@@ -1,4 +1,5 @@
 
+import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 
@@ -35,51 +36,100 @@ public class Hoved{
         System.out.println("");
 
         Scanner ny = new Scanner(System.in);
-        System.out.println("Skriv 1 for å finne korteste sti, 2 for chilleste sti og -1 for å avslutte");
-        int svar = ny.nextInt();
-        ny.nextLine();
-        
-        while(svar != -1){
-            if(svar == 1){
-                System.out.println("nmID på skuespiller 1: ");
-                String forste = ny.nextLine();
-                System.out.println("");
+        boolean ferdig = false;
+
+        while (!ferdig) {
+            System.out.println("\n=== Skuespiller-graf ===");
+            System.out.println("1) Finn korteste sti mellom to skuespillere");
+            System.out.println("2) Finn 'chilleste' sti mellom to skuespillere");
+            System.out.println("0) Avslutt");
+            System.out.print("Valg: ");
+
+            String valg = ny.nextLine().trim();
+
+        switch (valg) {
+            case "1":
+                System.out.println("Velg skuespiller 1:");
+                Skuespiller a = velgSkuespiller(graf, ny);
+
+                System.out.println("Velg skuespiller 2:");
+                Skuespiller b = velgSkuespiller(graf, ny);
+
+                System.out.println("-----------------" + "\n");
+                graf.finnKortesteSti(a.nmid, b.nmid);
+                System.out.println("-----------------" + "\n");
+                break;
+            case "2":
+                System.out.println("Velg skuespiller 1:");
+                Skuespiller aC = velgSkuespiller(graf, ny);
+
+                System.out.println("Velg skuespiller 2:");
+
                 
-                System.out.println("nmID på skuespiller 2: ");
-                String andre = ny.nextLine();
-                System.out.println("");
+                Skuespiller bC = velgSkuespiller(graf, ny);
 
                 System.out.println("-----------------" + "\n");
-                graf.finnKortesteSti(forste, andre);
+                graf.finnKortesteSti(aC.nmid, bC.nmid);
                 System.out.println("-----------------" + "\n");
-
-                System.out.println("Skriv 1 for å finne korteste sti, 2 for chilleste sti og -1 for å avslutte");
-                svar = ny.nextInt();
-                ny.nextLine();
-            }else if(svar == 2){
-                System.out.println("nmID på skuespiller 1: ");
-                String forste = ny.nextLine();
-                System.out.println("");
-                
-                System.out.println("nmID på skuespiller 2: ");
-                String andre = ny.nextLine();
-                System.out.println("");
-
-                System.out.println("-----------------" + "\n");
-                graf.finnKortesteStiVektet(forste, andre);
-                System.out.println("-----------------" + "\n");
-
-                System.out.println("Skriv 1 for å finne korteste sti, 2 for chilleste sti og -1 for å avslutte");
-                svar = ny.nextInt();
-                ny.nextLine();
-            }
-            
+                break;
+            case "0":
+                ferdig = true;
+                break;
+            default:
+                System.out.println("Ugyldig valg, prøv igjen.");
         }
+    }
 
-      
-        ny.close();
-
+    ny.close();
+    System.out.println("Ha det!");  
         
     }
+
+    private static Skuespiller velgSkuespiller(Graf graf, Scanner input) {
+    while (true) {
+        System.out.print("Skriv inn navn (eller del av navn) på skuespiller: ");
+        String navnDel = input.nextLine().trim();
+
+        if (navnDel.isEmpty()) {
+            System.out.println("Du må skrive noe.");
+            continue;
+        }
+
+        List<Skuespiller> kandidater = graf.finnSkuespillere(navnDel);
+
+        if (kandidater.isEmpty()) {
+            System.out.println("Fant ingen skuespillere som matcher. Prøv igjen.");
+            continue;
+        }
+
+        // Vis kandidater
+        for (int i = 0; i < kandidater.size(); i++) {
+            Skuespiller s = kandidater.get(i);
+            System.out.println((i + 1) + ") " + s.navn + " [" + s.nmid + "]");
+        }
+
+        System.out.print("Velg nummer (1-" + kandidater.size() + "), eller 0 for å søke på nytt: ");
+        String svar = input.nextLine().trim();
+
+        int valg;
+        try {
+            valg = Integer.parseInt(svar);
+        } catch (NumberFormatException e) {
+            System.out.println("Ugyldig tall, prøv igjen.");
+            continue;
+        }
+
+        if (valg == 0) {
+            continue; // nytt søk
+        }
+
+        if (valg < 1 || valg > kandidater.size()) {
+            System.out.println("Ugyldig valg, prøv igjen.");
+            continue;
+        }
+
+        return kandidater.get(valg - 1);
+    }
+}
 }
 

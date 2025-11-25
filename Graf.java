@@ -208,31 +208,17 @@ public class Graf {
 
 
 
-//Jeg får en StackOverflowError med denne algortimen
-//Jeg har prøvd å skrive den med en stack istedenfor, men da ser det ut som jeg får feil svar 
-// Kaller derfor ikke på den i main metoden min 
-    public int antallKomponenter(){
-        HashSet<Node> besokt = new HashSet<>();
-        int teller = 0;
+public List<Skuespiller> finnSkuespillere(String delNavn){
+    List<Skuespiller> resultat = new ArrayList<>(); 
+    String sok = delNavn.toLowerCase();
 
-        for(Node v : alleNoder){
-            if(!besokt.contains(v)){
-                DFS(v, besokt);
-                teller++;
-            }
-        }
-        return teller;
-
-    }
-
-    public void DFS (Node v, HashSet<Node> besokt){
-        besokt.add(v);
-        
-        for(Node u : kanter.get(v)){
-            if(!besokt.contains(u)){
-                DFS(u, besokt);
-            }
+    for(Skuespiller s : skuespillerOppslag.values()){
+        if(s.navn.toLowerCase().contains(sok)){
+            resultat.add(s);
         }
     }
+
+    return resultat;
+}
     
 }
