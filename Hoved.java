@@ -107,12 +107,13 @@ public class Hoved{
         }
 
         // Vis kandidater
-        for (int i = 0; i < 25; i++) {
+        int i;
+        for (i = 0; i < kandidater.size() && i < 25; i++) {
             Skuespiller s = kandidater.get(i);
             System.out.println((i + 1) + ") " + s.navn + " [" + s.nmid + "]");
         }
 
-        System.out.print("Velg nummer (1-" + kandidater.size() + "), eller 0 for å søke på nytt: ");
+        System.out.print("Velg nummer (1-" + i + "), eller 0 for å søke på nytt: ");
         String svar = input.nextLine().trim();
 
         int valg;
