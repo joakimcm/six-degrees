@@ -14,7 +14,7 @@ Et morsomt terminal-program som lar deg finne ut hvilke filmer du må se for å 
 
 ## Bruke programmet 
 1. Kjør programmet:  
-`javac Hoved`
+`java Hoved`
 
 2. Velg hvilket modus du vil ha
 - Med korteste sti finner programmet korteste vei mellom to skuespillere.
