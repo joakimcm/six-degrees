@@ -1,5 +1,5 @@
 
-# Six degrees of seperation 
+# Six degrees of IMDB
 
 Et morsomt terminal-program som lar deg finne ut hvilke filmer du må se for å komme fra den ene skuespilleren til den andre! 
 
