@@ -4,11 +4,12 @@
 Et morsomt terminal-program som lar deg finne ut hvilke filmer du må se for å komme fra den ene skuespilleren til den andre! 
 
 ## Oppsett
-1. Klon prosjektet til din lokale maskin 
-2. Navigér til repoet:  
+1. Klon prosjektet til din lokale maskin:  
+`git clone https://github.com/joakimcm/six-degrees.git`  
+3. Navigér til repoet:  
 `cd six-degrees`
 
-3. Bygg programmet:  
+4. Bygg programmet:  
 `javac Hoved.java`
 
 ## Bruke programmet 
