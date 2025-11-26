@@ -107,7 +107,7 @@ public class Hoved{
         }
 
         // Vis kandidater
-        for (int i = 0; i < kandidater.size(); i++) {
+        for (int i = 0; i < 25; i++) {
             Skuespiller s = kandidater.get(i);
             System.out.println((i + 1) + ") " + s.navn + " [" + s.nmid + "]");
         }
