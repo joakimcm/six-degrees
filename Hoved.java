@@ -39,7 +39,7 @@ public class Hoved{
         boolean ferdig = false;
 
         while (!ferdig) {
-            System.out.println("\n=== Skuespiller-graf ===");
+            System.out.println("\n=== Six-degrees-of-IMDB ===");
             System.out.println("1) Finn korteste sti mellom to skuespillere");
             System.out.println("2) Finn 'chilleste' sti mellom to skuespillere");
             System.out.println("0) Avslutt");
@@ -52,6 +52,8 @@ public class Hoved{
                 System.out.println("Velg skuespiller 1:");
                 Skuespiller a = velgSkuespiller(graf, ny);
 
+                System.out.println("\n");
+
                 System.out.println("Velg skuespiller 2:");
                 Skuespiller b = velgSkuespiller(graf, ny);
 
@@ -63,13 +65,15 @@ public class Hoved{
                 System.out.println("Velg skuespiller 1:");
                 Skuespiller aC = velgSkuespiller(graf, ny);
 
+                System.out.println("\n");
+
                 System.out.println("Velg skuespiller 2:");
 
                 
                 Skuespiller bC = velgSkuespiller(graf, ny);
 
                 System.out.println("-----------------" + "\n");
-                graf.finnKortesteSti(aC.nmid, bC.nmid);
+                graf.finnKortesteStiVektet(aC.nmid, bC.nmid);
                 System.out.println("-----------------" + "\n");
                 break;
             case "0":

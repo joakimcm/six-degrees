@@ -72,10 +72,10 @@ public class Graf {
         Node slutt = skuespillerOppslag.get(ID2);
 
         ArrayList<Node> liste = BFSKortesteStiMellom(start, slutt);
-        System.out.println(liste.get(0));
 
         for(int i = 1; i < liste.size(); i++){
             if(i%2 == 1){
+                System.out.print(liste.get(i-1) + "  ");
                 System.out.print("===[ " + liste.get(i) + " ] ===>");
             }else{
                 System.out.println("  " + liste.get(i) + "\n");
@@ -126,7 +126,6 @@ public class Graf {
         float totalVekt = 0;
 
         ArrayList<Node> liste = DijkstraKortesteStiMellom(start, slutt);
-        System.out.println(liste.get(0));
 
         for(Node n : liste){
             if(n instanceof Film){
@@ -137,11 +136,11 @@ public class Graf {
 
         for(int i = 1; i < liste.size(); i++){
             if(i%2 == 1){
+                System.out.print(liste.get(i-1) + "  ");
                 System.out.print("===[ " + liste.get(i) + " ] ===>");
             }else{
                 System.out.println("  " + liste.get(i) + "\n");
             }
-            
         }
         System.out.println(totalVekt);
     }
