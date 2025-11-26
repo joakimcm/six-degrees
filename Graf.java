@@ -123,16 +123,8 @@ public class Graf {
     public void finnKortesteStiVektet(String ID1, String ID2){
         Node start = skuespillerOppslag.get(ID1);
         Node slutt = skuespillerOppslag.get(ID2);
-        float totalVekt = 0;
 
         ArrayList<Node> liste = DijkstraKortesteStiMellom(start, slutt);
-
-        for(Node n : liste){
-            if(n instanceof Film){
-                Film film = (Film) n;
-                totalVekt += 10-film.rating;
-            }
-        }
 
         for(int i = 1; i < liste.size(); i++){
             if(i%2 == 1){
@@ -142,7 +134,6 @@ public class Graf {
                 System.out.println("  " + liste.get(i) + "\n");
             }
         }
-        System.out.println(totalVekt);
     }
 
     private ArrayList<Node> DijkstraKortesteStiMellom(Node start, Node slutt){

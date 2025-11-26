@@ -47,6 +47,8 @@ public class Hoved{
 
             String valg = ny.nextLine().trim();
 
+            System.out.println("\n");
+
         switch (valg) {
             case "1":
                 System.out.println("Velg skuespiller 1:");
